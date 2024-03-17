@@ -13,12 +13,6 @@ int game(int array[4][2]) {
     int input;
     int win;
 
-    for(int row = 0; row < 4; row++) {
-        for(int colm = 0; colm < 2; colm++) {
-            array[row][colm] = 0;
-        }
-    }
-
     for(int round = 0; round < 4; round++) {
         printf("\nROUND %d\n", round + 1);
 
@@ -77,7 +71,12 @@ int game(int array[4][2]) {
 }
 
 int main() {
-    int array[4][2];
+    int array[4][2] = {
+        {0, 0},
+        {0, 0},
+        {0, 0},
+        {0, 0}
+    };
 
     printf("ROCK - 6 | PAPER - 5 | SCISSORS - 2\n");
 
