@@ -1,11 +1,28 @@
 #include <stdio.h>
 
+void table(int array[4][2]) {
+    for(int row = 0; row < 4; row++) {
+        for(int colm = 0; colm < 2; colm++) {
+            printf("%d ", array[row][colm]);
+        }
+        printf("\n");
+    }
+}
+
 int game(int array[4][2]) {
     int input;
     int win;
 
+    for(int row = 0; row < 4; row++) {
+        for(int colm = 0; colm < 2; colm++) {
+            array[row][colm] = 0;
+        }
+    }
+
     for(int round = 0; round < 4; round++) {
         printf("\nROUND %d\n", round + 1);
+
+        table(array);
         
         for(int player = 0; player < 2; player++) {
             do {
@@ -22,27 +39,27 @@ int game(int array[4][2]) {
         
         for(int column = 0; column < 2; column++) {
             if(array[round][column] == 6 && array[round][column + 1] == 2) {
-                printf("Player 1 win this round");
+                printf("Player 1 wins this round\n\n");
                 win = 1;
                 break;
             }
             else if(array[round][column] == 2 && array[round][column + 1] == 6) {
-                printf("Player 2 win this round");
+                printf("Player 2 wins this round\n\n");
                 win = -1;
                 break;
             }
             else if(array[round][column] < array[round][column + 1]) {
-                printf("Player 1 win this round");
+                printf("Player 1 wins this round\n\n");
                 win = 1;
                 break;
             }
             else if(array[round][column] > array[round][column + 1]) {
-                printf("Player 2 win this round");
+                printf("Player 2 wins this round\n\n");
                 win = -1;
                 break;
             }
             else {
-                printf("Tie in this round");
+                printf("Tie in this round\n\n");
                 break;
             }
         }
