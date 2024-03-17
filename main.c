@@ -2,8 +2,7 @@
 
 int game(int array[4][2]) {
     int input;
-    int p1Wins = 0;
-    int p2Wins = 0;
+    int win;
 
     for(int round = 0; round < 4; round++) {
         printf("\nROUND %d\n", round + 1);
@@ -24,22 +23,22 @@ int game(int array[4][2]) {
         for(int column = 0; column < 2; column++) {
             if(array[round][column] == 6 && array[round][column + 1] == 2) {
                 printf("Player 1 win this round");
-                p1Wins++;
+                win = 1;
                 break;
             }
             else if(array[round][column] == 2 && array[round][column + 1] == 6) {
                 printf("Player 2 win this round");
-                p2Wins++;
+                win = -1;
                 break;
             }
             else if(array[round][column] < array[round][column + 1]) {
                 printf("Player 1 win this round");
-                p1Wins++;
+                win = 1;
                 break;
             }
             else if(array[round][column] > array[round][column + 1]) {
                 printf("Player 2 win this round");
-                p2Wins++;
+                win = -1;
                 break;
             }
             else {
@@ -49,10 +48,10 @@ int game(int array[4][2]) {
         }
     }
 
-    if(p1Wins > p2Wins) {
+    if(win == 1) {
         return 1;
     }
-    else if(p1Wins < p2Wins) {
+    else if(win == -1) {
         return -1;
     }
     else {
@@ -68,13 +67,13 @@ int main() {
     int winner = game(array);
 
     if(winner == 1) {
-        printf("\nIn this match Player 1 wins");
+        printf("\n\nIn this match Player 1 wins");
     }
     else if(winner == -1) {
-        printf("\nIn this match Player 2 wins");
+        printf("\n\nIn this match Player 2 wins");
     }
     else {
-        printf("\nThe two players in this match are gay");
+        printf("\n\nThe two players in this match are gay");
     }
 
     return 0;
