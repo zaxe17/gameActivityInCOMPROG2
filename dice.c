@@ -31,7 +31,7 @@ int main() {
     int array[3][3] = {
         {0, 0, 0},
         {0, 0, 0},
-        {0, 0, 9}
+        {0, 0, 0}
     };
     int player = 0;
     int dice;
