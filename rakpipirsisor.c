@@ -1,16 +1,16 @@
 #include <stdio.h>
 
-void winner(int choice1, int choice2) {
-    if(choice1 == 6 && choice2 == 2) {
+void winner(int player1, int player2) {
+    if(player1 == 6 && player2 == 2) {
         printf("Player 1 wins this round\n");
     }
-    else if(choice1 == 2 && choice2 == 6) {
+    else if(player1 == 2 && player2 == 6) {
         printf("Player 2 wins this round\n");
     }
-    else if(choice1 < choice2) {
+    else if(player1 < player2) {
         printf("Player 1 wins this round\n");
     }
-    else if(choice1 > choice2) {
+    else if(player1 > player2) {
         printf("Player 2 wins this round\n");
     }
     else {
@@ -47,32 +47,44 @@ void table(int array[4][2], int round) {
 }
 
 int main() {
-    int array[4][2] = { {0} };
+    int array[4][2] = {
+        {0, 0,},
+        {0, 0,},
+        {0, 0,},
+        {0, 0,},
+    };
     int choice;
+    char ans;
 
-    printf("ROCK - 6 | PAPER - 5 | SCISSORS - 2\n");
+    do {
+        printf("\nROCK - 6 | PAPER - 5 | SCISSORS - 2\n");
 
-    for(int round = 0; round < 4; round++) {
-        printf("\nRound %d:\n", round + 1);
+        for(int round = 0; round < 4; round++) {
+            printf("\nRound %d:\n", round + 1);
 
-        for(int player_input = 0; player_input < 2; player_input++) {
-            do {
-                printf("Player %d: ", player_input + 1);
-                scanf("%d", &choice);
+            for(int player_input = 0; player_input < 2; player_input++) {
+                do {
+                    printf("Player %d: ", player_input + 1);
+                    scanf("%d", &choice);
 
-                if(!(choice == 6 || choice == 5 || choice == 2)) {
-                    printf("\nEnter ROCK - 6, PAPER - 5, or SCISSORS - 2\n");
-                }
+                    if(!(choice == 6 || choice == 5 || choice == 2)) {
+                        printf("\nEnter ROCK - 6, PAPER - 5, or SCISSORS - 2\n");
+                    }
 
-            } while(!(choice == 6 || choice == 5 || choice == 2));
+                } while(!(choice == 6 || choice == 5 || choice == 2));
 
-            array[round][player_input] = choice;
+                array[round][player_input] = choice;
+            }
+
+            winner(array[round][0], array[round][1]);
+
+            table(array, round);
         }
+        
+        printf("Do you want to play again? (Y/N):");
+        scanf(" %c", &ans);
 
-        winner(array[round][0], array[round][1]);
-
-        table(array, round);
-    }
+    } while(ans == 'Y' || ans == 'y');
 
     return 0;
 }
